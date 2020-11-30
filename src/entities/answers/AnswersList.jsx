@@ -30,8 +30,10 @@ const AnswerPanel = ({ id, record, resource }) => {
   );
 };
 
+const AnswerTitle = (r) => (<span>Список ответов</span>);
+
 export const AnswerList = props => (
-  <List {...props}  actions={<ListActions/>}>
+  <List {...props} actions={<ListActions/>} title={<AnswerTitle/>}>
     <Datagrid expand={<AnswerPanel/>} title="Ответы" isRowSelectable={r => false}>
       <ReferenceField source="PollItemId.id" reference="questions">
         <TextField source="question" />
