@@ -1,89 +1,53 @@
 import React from 'react';
+import { Admin, EditGuesser, ListGuesser, Resource } from 'react-admin';
+import { ProvideAuth } from './auth'
+import PostIcon from '@material-ui/icons/Book';
+import BugReport from '@material-ui/icons/BugReport';
+
 import './App.css';
 
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Redirect,
-  NavLink,
-  useHistory, useLocation,
-} from 'react-router-dom'
+import dataProvider from './entities/provider';
+import { VaccineList } from './entities/vaccine/VaccineList';
+import { DiseasList } from './entities/diseas/DiseasList';
+import { VaccineEdit } from './entities/vaccine/VaccineEdit';
+import { VaccineCreate } from './entities/vaccine/VaccineCreate';
+import { DiseasEdit } from './entities/diseas/DiseasEdit';
+import { DiseasCreate } from './entities/diseas/DiseasCreate';
+import NotFound from './components/NotFound/NotFound';
+import { theme } from './static/theme';
+import { Menu } from './Layout';
+import { QuestionList } from './entities/questions/QuestionsList';
+import { QuestionEdit } from './entities/questions/QuestoinEdit';
+import { QuestionCreate } from './entities/questions/CreateQuestion';
+import { AnswerList } from './entities/answers/AnswersList';
+import { AnswerEdit } from './entities/answers/AnswerEdit';
+import { AnswerCreate } from './entities/answers/AnswerCreate';
 
-import { MainMenu } from './components/menu/menu'
-import { ProvideAuth, useAuth, authContext } from './auth'
-
-import Page1 from './pages/Page1'
-import Page2 from './pages/Page2'
-import Page3 from './pages/Page3'
-import PrivatePage from './pages/PrivatePage'
-import AdminPage from './pages/AdminPage'
-import LoginPage from './pages/login'
-
-function PrivateRoute({ children, hasRole, ...rest }) {
-  const auth = useAuth();
-  return (
-      <Route
-          {...rest}
-          render={({ location }) =>
-              auth.isAutorised() && auth.hasRole(hasRole) ? (
-                  children
-              ) : auth.isAutorised() && !auth.hasRole(hasRole) ? <div>Access denied</div> : (
-                  <Redirect
-                      to={{
-                          pathname: '/login',
-                          state: { from: location }
-                      }}
-                  />
-              )
-          }
-      />
-  )
-}
-
-// This is for pages like your.app/books/the-bible, wthere 'the-bible' in nan Object ID
-// 
-// const Child = ({ match }) => {
-//   return (
-//   <div>Object ID: {match.params.id}</div>
-//   )
-// } 
 
 export default function App() {
   return (
     <ProvideAuth>
-      <Router>
-        <MainMenu />
-        <Switch>
+      <Admin
+        theme={theme}
+        dataProvider={dataProvider}
+        catchAll={NotFound}
+        menu={Menu}>
 
-         {/* Public pages */}
-          <Route path="/login">
-            <LoginPage />
-          </Route>
-          <Route exact path="/">
-            <Page1 />
-          </Route>
-          <Route exact path="/page2">
-            <Page2 />
-          </Route>
-          <Route exact path="/page3">
-            <Page3 />
-          </Route>
-          
-          {/* Pages for any authorised user */}
-          <PrivateRoute path="/private">
-            <PrivatePage />
-          </PrivateRoute>
-          
-          {/* Pages for users, who have role == 'admin'. You can apply any other value here */}
-          <PrivateRoute path="/admin" hasRole={'admin'}>
-            <AdminPage />
-          </PrivateRoute>
+        <Resource name="vaccine" list={VaccineList} edit={VaccineEdit} icon={PostIcon} options={{
+          label: 'Вакцины'
+        }} create={VaccineCreate} />
 
-          {/* This is for pages like your.app/books/the-bible, wthere 'the-bible' in an Object ID */}
-          {/* <Route exact path="/table/:id" component={Child}/> */}
-        </Switch>
-      </Router>
+        <Resource name="diseas" list={DiseasList} edit={DiseasEdit} icon={BugReport} options={{
+          label: 'Болезни'
+        }} create={DiseasCreate} />
+
+        <Resource name="questions" list={QuestionList} edit={QuestionEdit} create={QuestionCreate} options={{
+          label: 'Вопросы'
+        }} />
+
+        <Resource name="answers" list={AnswerList} edit={AnswerEdit} create={AnswerCreate} />
+
+      </Admin>
     </ProvideAuth>
   );
 }

@@ -8,7 +8,9 @@
     "@testing-library/user-event": "^7.2.1",
     "directual-api": "^1.2.8",
     "http-proxy-middleware": "^1.0.3",
+    "lodash": "^4.17.20",
     "react": "^16.13.1",
+    "react-admin": "^3.10.2",
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1"
