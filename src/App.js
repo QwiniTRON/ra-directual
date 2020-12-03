@@ -22,6 +22,8 @@ import { QuestionCreate } from './entities/questions/CreateQuestion';
 import { AnswerList } from './entities/answers/AnswersList';
 import { AnswerEdit } from './entities/answers/AnswerEdit';
 import { AnswerCreate } from './entities/answers/AnswerCreate';
+import { ChatList } from './entities/chat/chatList';
+import { ChatShow } from './entities/chat/ChatShow';
 
 
 export default function App() {
@@ -46,6 +48,10 @@ export default function App() {
         }} />
 
         <Resource name="answers" list={AnswerList} edit={AnswerEdit} create={AnswerCreate} />
+
+        <Resource name="chat" list={ChatList} show={ChatShow} options={{
+          label: 'Чат'
+        }} />
 
       </Admin>
     </ProvideAuth>

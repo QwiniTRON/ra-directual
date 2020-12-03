@@ -36,7 +36,7 @@ export const AnswerList = props => (
   <List {...props} actions={<ListActions/>} title={<AnswerTitle/>}>
     <Datagrid expand={<AnswerPanel/>} title="Ответы" isRowSelectable={r => false}>
       <ReferenceField source="PollItemId.id" reference="questions">
-        <TextField source="question" />
+        <TextField source="question" label="вопрос" />
       </ReferenceField>
       <TextField source="text" />
       <EditButton label="редактировать" />

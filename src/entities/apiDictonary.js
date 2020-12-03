@@ -25,6 +25,16 @@ export default {
     'answers': {
       structure: 'Answer',
       endPoint: 'answer'
+    },
+    'chat': {
+      structure: 'TUser',
+      endPoint: 'chatUser',
+      formatList(data) {
+        return data.map((chatUser) => {
+          chatUser.id = chatUser.Id;
+          return chatUser;
+        });
+      }
     }
   },
 
@@ -44,6 +54,14 @@ export default {
     'answers': {
       structure: 'Answer',
       endPoint: 'getAnswersByIds'
+    },
+    'chat': {
+      structure: 'TUser',
+      endPoint: 'chatUsersByIds',
+      formatList(data) {
+        data.id = data.Id;
+        return data;
+      }
     }
   },
 

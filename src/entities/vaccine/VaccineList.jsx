@@ -37,16 +37,7 @@ export const VaccineList = props => {
     <List {...props} filters={<VaccineFilter />} title="Список вакцин" actions={<ListActions />}>
       {/* <Datagrid rowClick="edit" > */}
       <Datagrid expand={<VaccinePanel />} isRowSelectable={r => false}>
-        {/* <TextField source="id" label="id" /> */}
         <TextField source="name" label="имя" />
-        {/* <TextField source="description" label="описание" /> */}
-        {/* <ArrayField source="diseases" label="болезни">
-        <SingleFieldList >
-          <ReferenceField source="id" reference="diseas" >
-            <ChipField source="name" />
-          </ReferenceField>
-        </SingleFieldList>
-      </ArrayField> */}
         <EditButton label="редактировать" color="default" />
       </Datagrid>
     </List>

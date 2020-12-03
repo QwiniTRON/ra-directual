@@ -7,6 +7,7 @@ import BugReport from '@material-ui/icons/BugReport';
 import Question from '@material-ui/icons/QuestionAnswer';
 import ChatBubble from '@material-ui/icons/ChatBubble';
 import AddComment from '@material-ui/icons/AddComment';
+import ChatIcon from '@material-ui/icons/Chat';
 import {
   useTranslate,
   MenuItemLink
@@ -41,6 +42,14 @@ const Menu = ({ onMenuClick, logout, dense = false }) => {
         sidebarIsOpen={open}
         dense={dense}
         leftIcon={<Book />}
+      />
+      <MenuItemLink
+        to={`/chat`}
+        primaryText={"чат"}
+        onClick={onMenuClick}
+        sidebarIsOpen={open}
+        dense={dense}
+        leftIcon={<ChatIcon />}
       />
       <MenuItemLink
         to={`/diseas`}

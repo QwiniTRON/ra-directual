@@ -27,7 +27,7 @@ export default {
       .structure(apiInfo.structure)
       .getData(apiInfo.endPoint, { page, pageSize, sort, sessionID: '', ...filter })
       .then((response) => ({
-        data: response.payload,
+        data: apiInfo.formatList? apiInfo.formatList(response.payload): response.payload,
         total: response.pageInfo.tableSize
       }))
       .catch((err) => console.log(err));
@@ -41,7 +41,7 @@ export default {
       .structure(apiInfo.structure)
       .getData(apiInfo.endPoint, { sessionID: '', ids: [id] })
       .then((response) => ({
-        data: response.payload[0]
+        data: apiInfo.formatList? apiInfo.formatList(response.payload[0]) : response.payload[0]
       }))
       .catch((err) => console.log(err));
   },
