@@ -1,7 +1,7 @@
 const { createProxyMiddleware } = require('http-proxy-middleware');
 const API_HOST = 'https://api.directual.com/'
 // !Important, set APP_ID in , env file or set you APP ID here
-const APP_ID = process.env.APP_ID
+const APP_ID = "95d212d1-cfc6-4b40-9963-84e06acb1146"
 
 module.exports = function(app) {
   app.use(
