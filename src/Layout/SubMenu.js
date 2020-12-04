@@ -45,7 +45,7 @@ const SubMenu = ({
                 {isOpen ? <ExpandMore /> : icon}
             </ListItemIcon>
             <Typography variant="inherit" color="textSecondary">
-                {translate(name)}
+                {name}
             </Typography>
         </MenuItem>
     );
@@ -55,7 +55,7 @@ const SubMenu = ({
             {sidebarIsOpen || isOpen ? (
                 header
             ) : (
-                <Tooltip title={translate(name)} placement="right">
+                <Tooltip title={name} placement="right">
                     {header}
                 </Tooltip>
             )}

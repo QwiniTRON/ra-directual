@@ -76,7 +76,7 @@ export default {
       .setData(apiInfo.endPoint, data, { sessionID: '' })
       .then((r) => {
         return {
-          data: r.result[0]
+          data: apiInfo.formatList? apiInfo.formatList(r.result[0]) : r.result[0]
         };
       });
   },

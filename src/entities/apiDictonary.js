@@ -180,6 +180,14 @@ export default {
         data.PollItemId = data.PollItemId.id;
         return data;
       }
+    },
+    'chat': {
+      structure: 'TUser',
+      endPoint: 'chatUser',
+      formatList(data) {
+        data.id = data.Id;
+        return data;
+      }
     }
   },
 
