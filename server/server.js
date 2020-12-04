@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 const proxy = require('../src/setupProxy')
-const SERVER_PORT = 4401;
+const SERVER_PORT = process.env.NODE_SERVER_PORT || 8080;
 
 const app = express();
 app.use(express.static(path.join(__dirname, '../build')));
