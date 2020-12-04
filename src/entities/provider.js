@@ -5,7 +5,7 @@ const api = new Directual({ apiHost: '/' });
 
 
 function getApiInfo(routeName, method = 'getList') {
-  const apiInfo = apiDictionary.[method][routeName];
+  const apiInfo = apiDictionary[method][routeName];
   if (!apiInfo) throw new Error('Нет api для такого запроса');
   return apiInfo;
 }
